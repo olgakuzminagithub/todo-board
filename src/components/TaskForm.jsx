@@ -28,9 +28,9 @@ const TaskForm = ({addTask}) => {
        setShowDescription(true)
     }
 
-    const handleBlurTitle = (e) => {
-        setShowDescription(false)
-    }
+    // const handleBlurTitle = (e) => {
+    //     setShowDescription(false)
+    // }
 
     const handleChangeTitle = (e) => setTitle(e.target.value);
 

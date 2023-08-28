@@ -1,43 +1,8 @@
 import { AiOutlineCheck, AiFillDelete } from "react-icons/ai";
 import PropTypes from "prop-types";
-import { useState, useRef } from "react";
+import EditField from "./EditField";
 
 const Task = ({ task, toggleTask, deleteTask, changeTitle, changeDescription}) => {
-    const refTitle = useRef(null);
-    const [editTitle, setEditTitle] = useState(false)
-    const [title, setTitle] = useState(task.title);
-    const refDes = useRef(null);
-    const [editDescription, setEditDescription] = useState(false)
-    const [description, setDescription] = useState(task.description);
-
-    const handleTitleClick = (e) => {
-        if (e.detail === 2) {
-            setEditTitle(true)
-            refTitle.current.focus();
-        }
-    }
-
-    const handleTitleBlur = () => {
-        if (!title.trim().length) {
-            alert("Enter task");
-            return
-        }
-        changeTitle(task.id, title)
-        setEditTitle(false)
-    }
-
-    const handleDesClick = (e) => {
-        if (e.detail === 2) {
-            setEditDescription(true)
-            refDes.current.focus();
-        }
-    }
-
-    const handleDesBlur = () => {
-        changeDescription(task.id, description)
-        setEditDescription(false)
-    }
-
     return (
     <li 
         className="tasks_item task" 
@@ -50,40 +15,19 @@ const Task = ({ task, toggleTask, deleteTask, changeTitle, changeDescription}) =
 
     >
         <div className="task_view-info">
-            <div className="task_title">
-                <p 
-                    className={(editTitle === false) ? "text-show" : "text-notshow"}
-                    onClick={handleTitleClick}
-                >
-                    {title}
-                </p>
-                <input
-                    className={(editTitle === true) ? "input-show" : "input-notshow"}
-                    type="text"
-                    name="title"
-                    value={title}
-                    ref={refTitle}
-                    onChange={(e) => setTitle(e.target.value)}
-                    onBlur={handleTitleBlur}
-                />
-            </div>
-            <div className="task_description">
-                <p 
-                    className={(editDescription === false) ? "text-show" : "text-notshow"}
-                    onClick={handleDesClick}
-                >
-                    {description}
-                </p>
-                <input
-                    className={(editDescription === true) ? "input-show" : "input-notshow"}
-                    type="text"
-                    name="description"
-                    value={description}
-                    ref={refDes}
-                    onChange={(e) => setDescription(e.target.value)}
-                    onBlur={handleDesBlur}
-                />
-            </div>
+            <EditField 
+                taskID={task.id} 
+                sourceText={task.title} 
+                changeTextFunc={changeTitle} 
+                addClass="task_title" 
+                necessarily={true}
+            />
+            <EditField 
+                taskID={task.id} 
+                sourceText={task.description} 
+                changeTextFunc={changeDescription} 
+                necessarily={false}
+            />
         </div>
         <div className="task_buttons">
             <div className="task_button task_button__check" onClick={() => toggleTask(task.id)}>
