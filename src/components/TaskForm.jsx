@@ -54,6 +54,7 @@ const TaskForm = ({addTask}) => {
         <form method="POST" className="new-task_form" onSubmit={handleSubmit} ref={wrapRef}>
             <div className="new-task_info">
                 <input
+                    data-testid="input-taskname"
                     className="new-task_input"
                     placeholder="Enter Task"
                     type="text"
@@ -64,6 +65,7 @@ const TaskForm = ({addTask}) => {
                     //onBlur={handleBlurTitle}
                 />
                 <input
+                    data-testid="input-taskdescription"
                     className={(showDescription === false) ? "new-task_textarea display-none" : "new-task_textarea display-block"}
                     placeholder="Enter description"
                     type="text"
