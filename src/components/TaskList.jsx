@@ -86,7 +86,7 @@ const TaskList = ({status, tasks, toggleTask, deleteTask, changeTitle, changeDes
                             onDragStart={e => dragStartHandler(e, task)}
                             onDragLeave={e => dragLeaveHandler(e)}
                             onDragEnd={e => dragEndHandler(e)}
-                            onDragOver={e => dragOverHandler(e, task)}
+                            onDragOver={e => dragOverHandler(e)}
                             onDrop={e => dropHandler(e, task)}
                         >
                             <Task 
